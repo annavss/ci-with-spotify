@@ -84,8 +84,8 @@ jobs:
 
     # Lint with ruff 
     - name: Lint with ruff
-        run: |
-          uvx ruff check 
+      run: |
+          uvx ruff check .
 
 
     # Check formatting with ruff
