@@ -82,16 +82,16 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    # Lint with ruff (preferred modern linter)
+    # Lint with ruff 
     - name: Lint with ruff
         run: |
-          uvx ruff check .
+          uvx ruff check 
 
 
     # Check formatting with ruff
     - name: Check formatting with ruff
       run: |
-        uvx ruff format --check .
+        uvx ruff format --check 
 
     # Check import sorting with isort
     - name: Check import sorting with isort
