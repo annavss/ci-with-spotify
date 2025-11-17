@@ -55,6 +55,7 @@ jobs:
     #    if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       run: |
         uv sync
+    #uv sync --group dev
     #uv sync -e ci
 
     # This step runs unit tests with pytest
@@ -67,16 +68,37 @@ jobs:
 
     # This step runs the linter against the codebase
     # TODO: Replace the run block to use our preferred linter
-    - name: Lint with flake8
-      run: |
-        uv run ruff
+    #- name: Lint with flake8
+    #  run: |
+        #uv run ruff
         #uv run -m flake8 .
         # stop the build if there are Python syntax errors or undefined names
         #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    # TODO: Add steps to run formatting steps and type checking
-    - name: Format 
+    # Lint with ruff (preferred modern linter)
+    - name: Lint with ruff
+        run: |
+          uvx ruff check .
+
+
+    # Check formatting with ruff
+    - name: Check formatting with ruff
       run: |
-        uv ruff format
+        uvx ruff format --check .
+
+    # Check import sorting with isort
+    - name: Check import sorting with isort
+      run: |
+        uvx isort . --check
+
+    # Type checking with ty
+    - name: Type check with ty
+      run: |
+        uvx ty check
+
+    # TODO: Add steps to run formatting steps and type checking
+    #- name: Format 
+    #  run: |
+    #    uv ruff format
