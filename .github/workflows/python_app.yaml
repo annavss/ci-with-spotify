@@ -91,7 +91,7 @@ jobs:
     # Check formatting with ruff
     - name: Check formatting with ruff
       run: |
-        uvx ruff format --check 
+        uvx ruff format
 
     # Check import sorting with isort
     - name: Check import sorting with isort
